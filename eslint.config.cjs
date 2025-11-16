@@ -1,11 +1,9 @@
-const { FlatCompat } = require("@eslint/eslintrc");
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+const nextConfig = require("eslint-config-next/core-web-vitals");
+const nextTypeScriptConfig = require("eslint-config-next/typescript");
 
 module.exports = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextConfig,
+  ...nextTypeScriptConfig,
   {
     rules: {
       "prefer-const": "warn",
@@ -37,5 +35,10 @@ module.exports = [
       ".turbo/**",
     ],
   },
+  {
+    files: ["eslint.config.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];
-
